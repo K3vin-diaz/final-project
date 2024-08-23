@@ -39,10 +39,10 @@ public class SecurityConfig {
                                 .requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/api/users/**").authenticated()
-                                .requestMatchers("/api/comments/**").authenticated()
-                                .requestMatchers("/api/likes/**").authenticated()
-                                .requestMatchers("/api/collections/**").authenticated()
-                                .requestMatchers("/api/items/**").authenticated()
+                                .requestMatchers("/api/comments/**").permitAll()
+                                .requestMatchers("/api/likes/**").permitAll()
+                                .requestMatchers("/api/collections/**").permitAll()
+                                .requestMatchers("/api/items/**").permitAll()
                                 .anyRequest().permitAll()
                 ).sessionManagement(sessionManager ->
                         sessionManager

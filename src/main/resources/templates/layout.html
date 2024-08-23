@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Collection Manager</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Collection Manager</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/collections}">Collections</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/user/profile}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin}">Admin Page</a></li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div th:fragment="content"></div>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">&copy; 2024 Collection Manager</span>
+    </div>
+</footer>
+</body>
+</html>

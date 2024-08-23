@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Collection</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <header th:insert="layout :: header"></header>
+
+    <h2>Create New Collection</h2>
+
+    <form th:action="@{/collections/create}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" class="form-control">
+                <option value="Books">Books</option>
+                <option value="Signs">Signs</option>
+                <option value="Silverware">Silverware</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <!-- Custom fields logic here -->
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+
+    <footer th:insert="layout :: footer"></footer>
+</div>
+</body>
+</html>

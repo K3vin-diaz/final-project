@@ -1,8 +1,7 @@
 package com.intership.project.dto;
 
 import com.intership.project.model.Collection;
-import lombok.Data;
-import lombok.Value;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,6 +11,10 @@ import java.util.List;
  */
 @Value
 @Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor(force = true)
 public class ItemDto implements Serializable {
     Long id;
     String name;

@@ -1,55 +1,48 @@
 package com.intership.project.controller;
 
-import com.intership.project.dto.UserDto;
 import com.intership.project.model.User;
 import com.intership.project.service.UserService;
-import com.intership.project.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.HashMap;
-import java.util.Map;
-
-@RestController
-@RequestMapping("/api/auth")
+@Controller
 public class AuthController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    public AuthController(UserService userService) {
+        this.userService = userService;
+    }
 
-    @Autowired
-    private JwtUtil jwtUtil;
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model) {
+        model.addAttribute("userForm", userService.registerUser(new User()));
+        return "user/register";
+    }
 
     @PostMapping("/register")
-    public User register(@RequestBody UserDto userDto) {
-        User user = new User();
-        user.setUsername(userDto.getUsername());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setEmail(userDto.getEmail());
-        user.setRole("user");
-        return userService.registerUser(user);
-    }
-    @PostMapping("/login")
-    public Map<String, Object> login(@RequestBody UserDto userDto) {
-        String username = userDto.getUsername();
-        String password = userDto.getPassword();
-
-        User user = userService.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new RuntimeException("Invalid credentials");
+    public String registerUser(@ModelAttribute("userForm") User userForm, Model model) {
+        if (!userForm.getPassword().equals(userForm.getConfirmPassword())) {
+            model.addAttribute("passwordError", "Passwords do not match!");
+            return "user/register";
         }
 
-        String token = jwtUtil.generateToken(user);
+        if (userService.usernameExists(userForm.getUsername())) {
+            model.addAttribute("usernameError", "Username already exists!");
+            return "user/register";
+        }
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("user", user);
-        response.put("token", token);
-        return response;
+        userService.registerUser(userForm);
+        return "redirect:/login";
     }
 }

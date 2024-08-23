@@ -13,6 +13,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    @Transient
+    private String confirmPassword;
     private String password;
     private String email;
     private String role; // 'admin' or 'user'

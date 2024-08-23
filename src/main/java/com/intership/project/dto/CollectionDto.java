@@ -1,7 +1,6 @@
 package com.intership.project.dto;
 
-import lombok.Data;
-import lombok.Value;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -10,6 +9,10 @@ import java.io.Serializable;
  */
 @Value
 @Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor(force = true)
 public class CollectionDto implements Serializable {
     Long id;
     String name;

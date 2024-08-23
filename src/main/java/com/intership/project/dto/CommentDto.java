@@ -1,10 +1,7 @@
 package com.intership.project.dto;
 
 import com.intership.project.model.User;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Value;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -13,9 +10,11 @@ import java.time.LocalDateTime;
  * DTO for {@link com.intership.project.model.Comment}
  */
 @Value
+@Data
 @Getter
 @Setter
-@Data
+@AllArgsConstructor
+@NoArgsConstructor(force = true)
 public class CommentDto implements Serializable {
     Long id;
     ItemDto item;

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Item</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <header th:insert="layout :: header"></header>
+
+    <h2 th:text="${item.name}">Item Name</h2>
+    <p th:text="${item.description}">Item description...</p>
+
+    <div>
+        <h3>Comments</h3>
+        <ul>
+            <li th:each="comment : ${item.comments}">
+                <p th:text="${comment.text}"></p>
+                <small th:text="${comment.author}"></small>
+            </li>
+        </ul>
+    </div>
+
+    <footer th:insert="layout :: footer"></footer>
+</div>
+</body>
+</html>

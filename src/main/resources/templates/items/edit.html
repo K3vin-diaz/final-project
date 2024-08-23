@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Item</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <header th:insert="layout :: header"></header>
+
+    <h2>Edit Item</h2>
+
+    <form th:action="@{/items/edit}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" th:value="${item.name}" required>
+        </div>
+        <div class="form-group">
+            <label for="tags">Tags</label>
+            <input type="text" id="tags" name="tags" class="form-control" th:value="${item.tags}" required>
+        </div>
+        <!-- Add custom fields logic here -->
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+
+    <footer th:insert="layout :: footer"></footer>
+</div>
+</body>
+</html>

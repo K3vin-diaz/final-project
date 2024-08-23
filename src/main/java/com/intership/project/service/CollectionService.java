@@ -1,6 +1,5 @@
 package com.intership.project.service;
 
-
 import com.intership.project.model.Collection;
 import com.intership.project.repository.CollectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +27,16 @@ public class CollectionService {
 
         collection.setName(collectionDetails.getName());
         collection.setDescription(collectionDetails.getDescription());
-        // Actualiza otros campos según sea necesario
 
         return collectionRepository.save(collection);
     }
 
     public void deleteCollection(Long id) {
         collectionRepository.deleteById(id);
+    }
+
+    public Collection getCollectionById(Long id) {
+        return collectionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Collection not found"));
     }
 }

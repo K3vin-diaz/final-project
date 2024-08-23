@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Collection</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <header th:insert="layout :: header"></header>
+
+    <h2>Edit Collection</h2>
+
+    <form th:action="@{/collections/edit}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" th:value="${collection.name}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" class="form-control" th:text="${collection.description}" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" class="form-control">
+                <option value="Books" th:selected="${collection.category} == 'Books'">Books</option>
+                <option value="Signs" th:selected="${collection.category} == 'Signs'">Signs</option>
+                <option value="Silverware" th:selected="${collection.category} == 'Silverware'">Silverware</option>
+                <option value="Other" th:selected="${collection.category} == 'Other'">Other</option>
+            </select>
+        </div>
+        <!-- Custom fields logic here -->
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+
+    <footer th:insert="layout :: footer"></footer>
+</div>
+</body>
+</html>

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/images")
-public class ImageController {
+public class ImageRestController {
 
     @Autowired
     private ImageService imageService;

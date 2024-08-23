@@ -1,7 +1,5 @@
 package com.intership.project.service;
 
-
-
 import com.intership.project.model.Item;
 import com.intership.project.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +32,10 @@ public class ItemService {
 
     public void deleteItem(Long id) {
         itemRepository.deleteById(id);
+    }
+
+    public Item getItemById(Long id) {
+        return itemRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Item not found"));
     }
 }

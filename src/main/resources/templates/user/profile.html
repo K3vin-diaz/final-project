@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <header th:insert="layout :: header"></header>
+
+    <h2>My Collections</h2>
+    <a href="/collections/create" class="btn btn-primary">Create New Collection</a>
+    <ul>
+        <li th:each="collection : ${collections}">
+            <a th:href="@{/collections/{id}(id=${collection.id})}" th:text="${collection.name}"></a>
+            <a th:href="@{/collections/edit/{id}(id=${collection.id})}" class="btn btn-secondary">Edit</a>
+            <a th:href="@{/collections/delete/{id}(id=${collection.id})}" class="btn btn-danger">Delete</a>
+        </li>
+    </ul>
+
+    <footer th:insert="layout :: footer"></footer>
+</div>
+</body>
+</html>
